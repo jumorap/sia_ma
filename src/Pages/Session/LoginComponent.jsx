@@ -6,7 +6,7 @@ import styles from './styles';
 
 
 export default function LoginScreen({ navigation }) {
-    const [email, setEmail] = useState({ value: 'inasdf', error: '' })
+    const [nombre_usuario, setnombre_usuario] = useState({ value: '', error: '' })
     const [password, setPassword] = useState({ value: '', error: '' })
     const [modalVisible, setModalVisible] = useState(false);
 
@@ -32,10 +32,10 @@ export default function LoginScreen({ navigation }) {
                     label="nombre de usuario"
                     placeholder="Nombre de usuario"
                     returnKeyType="next"
-                    value={email.value}
-                    onChangeText={(text) => setEmail({ value: text, error: '' })}
-                    error={!!email.error}
-                    errorText={email.error}
+                    value={nombre_usuario.value}
+                    onChangeText={(text) => setnombre_usuario({ value: text, error: '' })}
+                    error={!!nombre_usuario.error}
+                    errorText={nombre_usuario.error}
                     autoCapitalize="none"
                     textContentType="username"
                     keyboardType="default"
