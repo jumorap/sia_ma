@@ -7,9 +7,10 @@ import Login from "./src/Pages/Session";
 export default function App() {
   return (
     <>
+      <MyComponent />
       <Login />
       <InfoPersonal />
-      <MyComponent />
+      
     </>
   )
 }
