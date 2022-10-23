@@ -1,32 +1,31 @@
 import React, { useState } from 'react'
-import { Text, Pressable, View, Modal, TouchableOpacity, TextInput } from 'react-native'
+import { Text, Pressable, View, Modal, TouchableOpacity, Image  } from 'react-native'
+import { TextInput } from 'react-native-paper';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
-import { faUserAlt, faLockOpen } from '@fortawesome/free-solid-svg-icons';
-import styles from './styles';
+import { faUserAlt, faLockOpen, faLock } from '@fortawesome/free-solid-svg-icons';
+import styles from './styles.js';
 
 
 export default function LoginScreen({ navigation }) {
     const [nombre_usuario, setnombre_usuario] = useState({ value: '', error: '' })
     const [password, setPassword] = useState({ value: '', error: '' })
     const [modalVisible, setModalVisible] = useState(false);
+    const [passwordVisible, setPasswordVisible] = useState(true);
 
     const onLoginPressed = () => {
         setModalVisible(true);
     }
+    const onPasswordVisiblePressed = () =>{
+        setPasswordVisible(!passwordVisible);
+    }
 
     return (
         <View style={styles.container}>
+            <Image style={styles.img} source={require('../../Assets/Images/logo.png')} />
             <Text style={styles.textoHead}>
-                Ingrese su usuario y contraseña
+                Ingrese su Usuario y Contraseña
             </Text>
-            <View
-                style={{
-                    borderBottomColor: '#FFFFFF',
-                    borderBottomWidth: 1,
-                }}
-            />
             <View style={styles.textField}>
-                <FontAwesomeIcon style={styles.icon} icon={faUserAlt} color={"#FFFFFF"} />
                 <TextInput
                     style={styles.input}
                     label="nombre de usuario"
@@ -34,15 +33,15 @@ export default function LoginScreen({ navigation }) {
                     returnKeyType="next"
                     value={nombre_usuario.value}
                     onChangeText={(text) => setnombre_usuario({ value: text, error: '' })}
-                    error={!!nombre_usuario.error}
-                    errorText={nombre_usuario.error}
+                    error={modalVisible}
                     autoCapitalize="none"
                     textContentType="username"
                     keyboardType="default"
+                    mode="outlined"
+                    right={<TextInput.Icon icon={() => <FontAwesomeIcon style={styles.icon} icon={faUserAlt} />} />}
                 />
             </View>
             <View style={styles.textField}>
-                <FontAwesomeIcon style={styles.icon} icon={faLockOpen} color={"#FFFFFF"} />
                 <TextInput
                     style={styles.input}
                     placeholder="Contraseña"
@@ -50,9 +49,10 @@ export default function LoginScreen({ navigation }) {
                     returnKeyType="done"
                     value={password.value}
                     onChangeText={(text) => setPassword({ value: text, error: '' })}
-                    error={!!password.error}
-                    errorText={password.error}
-                    secureTextEntry
+                    error={modalVisible}
+                    mode="outlined"
+                    secureTextEntry = {passwordVisible} 
+                    right={<TextInput.Icon onPress={() => {onPasswordVisiblePressed(); return false;}} icon={() => <FontAwesomeIcon style={styles.icon} icon={passwordVisible ? faLockOpen:faLock} />} />}
                 />
             </View>
             <TouchableOpacity style={styles.generalButton} onPress={onLoginPressed}>

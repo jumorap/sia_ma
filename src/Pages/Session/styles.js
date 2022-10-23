@@ -3,40 +3,32 @@ import { StyleSheet } from "react-native";
 const styles = StyleSheet.create({
     input: {
         flex: 1,
-        height: 40,
-        margin: 12,
-        paddingRight: 10,
-        borderWidth: 2,
-        padding: 10,
-        borderRadius: 5,
-        backgroundColor: '#FFFFFF',
-        height: 50,
-        fontSize: 15
-
+        margin: 10,
     },
     textoHead: {
         textAlign: 'center',
         fontWeight: 'bold',
         fontSize: 20,
-        color: '#FFFFFF',
+        color: '#1F2D52',
         padding: 20,
-        paddingBottom: 10
+        paddingBottom: 20
     },
     container: {
-        backgroundColor: '#1F2D52',
+        padding: 10,
+        backgroundColor: '#fff',
         padding: 20,
         borderRadius: 10
-
+        
     },
     generalButton: {
         margin: 10,
         border: 30,
         borderWidth: 1,
         borderRadius: 5,
-        backgroundColor: '#FFFFFF'
+        backgroundColor: '#1F2D52'
     },
     textButton: {
-        color: '#1F2D52',
+        color: '#FFFFFF',
         textAlign: 'center',
         fontWeight: 'bold',
         padding: 10
@@ -45,10 +37,11 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'flex-start',
         alignItems: 'center',
-        margin: 10
+        margin: 5
     },
     icon: {
         padding: 10,
+        color: "#000"
     },
     centeredView: {
         flex: 1,
@@ -88,6 +81,11 @@ const styles = StyleSheet.create({
     modalText: {
         marginBottom: 15,
         textAlign: "center"
+    },
+    img: {
+        alignContent: "center",
+        marginLeft: "auto",
+        marginRight: "auto",
     }
 });
 
