@@ -45,7 +45,7 @@ export default function LoginScreen({ navigation }) {
                 <TextInput
                     style={styles.input}
                     placeholder="Contraseña"
-                    label="Password"
+                    label="Contraseña"
                     returnKeyType="done"
                     value={password.value}
                     onChangeText={(text) => setPassword({ value: text, error: '' })}
