@@ -64,7 +64,7 @@ const myApp = ({ children }) => {
                     </Appbar>
                 </View>
                 <View style={{ flex: 1, justifyContent: "center" }}>
-                    <View style={{ backgroundColor: "#fff" }}>
+                    <View style={{ backgroundColor: "#FFF", borderRadius:10}}>
                         {children[names[page] || 0]}
                     </View>
                 </View>
