@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Text, View, ImageBackground, Image, TouchableOpacity, Alert } from 'react-native';
+import { Text, View, ImageBackground, Image, TouchableOpacity } from 'react-native';
 import { Appbar, Drawer } from 'react-native-paper';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { faBars } from '@fortawesome/free-solid-svg-icons';
@@ -74,13 +74,24 @@ const myApp = ({ children }) => {
                 width: '100%'
             }}>
                 <View position="relative">
+
                     <Appbar style={{ backgroundColor: "#1F2D52", elevation: 6 }}>
-                        <Appbar.Action icon={() => <Text><FontAwesomeIcon icon={faBars} color={"#FFF"} /></Text>} onPress={() => { setActive(!active) }} />
-                        <Text style={{ color: "#FFF" }}>{page}</Text>
+                        <Appbar.Action icon={() =>
+                            <Text>
+                                <FontAwesomeIcon icon={faBars} color={"#FFF"}/>
+                            </Text>
+                        } onPress={() => { setActive(!active) }} />
+
+                        <Text style={{ color: "#FFF" }}>
+                            {page}
+                        </Text>
                     </Appbar>
+
                 </View>
+
+
                 <View style={{ flex: 1, justifyContent: "center" }}>
-                    <View style={{ backgroundColor: "#FFF", borderRadius: 10 }}>
+                    <View style={{ backgroundColor: "#FFF", borderRadius: 10, margin: 10 }}>
                         {children[names[page] || 0]}
                     </View>
                 </View>

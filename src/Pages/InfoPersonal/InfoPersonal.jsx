@@ -52,7 +52,7 @@ const cardGenerator = (title, data) => {
                 {title}
             </Text>
             <Text>
-                {!data ? "NO APLICA" : data}
+                {!data ? "-" : data}
             </Text>
         </View>
     )
@@ -68,7 +68,8 @@ const InfoPersonal = () => {
     useEffect(() => {
         // Make a single request to the API
         if (!data) getUser().then((response) => setData(response.user))
-    })
+        console.log(data)
+    }, [data])
 
     return (
         <ScrollView>
@@ -89,20 +90,20 @@ const InfoPersonal = () => {
                 {cardGenerator("NACIONALIDAD", data?.nacionalidad)}
 
                 {titleCard(faFileMedical, "Información de Salud")}
-                {cardGenerator("Tipo de sangre", data?.tipo_sangre)}
+                {cardGenerator("TIPO SANGRE", data?.tipo_sangre)}
                 {cardGenerator("EPS", data?.eps)}
 
                 {titleCard(faPeopleArrows, "Responsables")}
                 {subtitleCard("Responsable 1")}
-                {cardGenerator("NOMBRES R1", data?.responsables[0]?.responsable_nombre)}
-                {cardGenerator("TIPO DOCUMENTO R1", data?.responsables[0]?.responsable_tipo_doc)}
-                {cardGenerator("DOCUMENTO R1", data?.responsables[0]?.responsable_numero_doc)}
-                {cardGenerator("TELÉFONO R1", data?.responsables[0]?.responsable_telefono)}
+                {cardGenerator("NOMBRES", data?.responsables[0]?.responsable_nombre)}
+                {cardGenerator("TIPO DOCUMENTO", data?.responsables[0]?.responsable_tipo_doc)}
+                {cardGenerator("DOCUMENTO", data?.responsables[0]?.responsable_numero_doc)}
+                {cardGenerator("TELÉFONO", data?.responsables[0]?.responsable_telefono)}
                 {subtitleCard("Responsable 2")}
-                {cardGenerator("NOMBRES R2", data?.responsables[1]?.responsable_nombre)}
-                {cardGenerator("TIPO DOCUMENTO R2", data?.responsables[1]?.responsable_tipo_doc)}
-                {cardGenerator("DOCUMENTO R2", data?.responsables[1]?.responsable_numero_doc)}
-                {cardGenerator("TELÉFONO R2", data?.responsables[1]?.responsable_telefono)}
+                {cardGenerator("NOMBRES", data?.responsables[1]?.responsable_nombre)}
+                {cardGenerator("TIPO DOCUMENTO", data?.responsables[1]?.responsable_tipo_doc)}
+                {cardGenerator("DOCUMENTO", data?.responsables[1]?.responsable_numero_doc)}
+                {cardGenerator("TELÉFONO", data?.responsables[1]?.responsable_telefono)}
 
                 {titleCard(faHouseUser, "Vivienda")}
                 {subtitleCard("Vivienda Previa")}
@@ -119,7 +120,7 @@ const InfoPersonal = () => {
                 {cardGenerator("TELÉFONO", data?.vivienda[1]?.vivienda_telefono)}
 
                 {titleCard(faAward, "Información de Militar")}
-                {cardGenerator("Situación militar", data?.situacion_militar)}
+                {cardGenerator("SIT. MILITAR", data?.situacion_militar)}
             </View>
         </ScrollView>
     )
