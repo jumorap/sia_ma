@@ -21,7 +21,7 @@ export default function LoginScreen({ navigation }) {
 
     return (
         <View style={styles.container}>
-            <Image style={styles.img} source={require('../../Assets/Images/logo.png')} />
+            <Image style={styles.img} source={require('../../Assets/Images/sia_logo.png')} />
             <Text style={styles.textoHead}>
                 Ingrese su Usuario y Contraseña
             </Text>

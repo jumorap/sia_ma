@@ -86,6 +86,8 @@ const styles = StyleSheet.create({
         alignContent: "center",
         marginLeft: "auto",
         marginRight: "auto",
+        width: 300,
+        height: 100
     }
 });
 
