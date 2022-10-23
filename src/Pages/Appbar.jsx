@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Text, View, Modal } from 'react-native';
+import { Text, View } from 'react-native';
 import { Appbar, Drawer } from 'react-native-paper';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { faBars } from '@fortawesome/free-solid-svg-icons';
@@ -7,7 +7,7 @@ import { faBars } from '@fortawesome/free-solid-svg-icons';
 
 const SidePanel = ({ setPage, page }) => {
     return (
-        <Drawer.Section style={{ position: 'absolute', backgroundColor: '#FFF', paddingBottom:"20%", paddingTop:"10%", elevation: 6,right:0, left:0, top: 63 }} title="Sistema de Información Académica">
+        <Drawer.Section style={{ position: 'absolute', backgroundColor: '#FFF', paddingBottom:"20%", paddingTop:"10%", elevation: 6,right:"20%", left:0, top: 63, bottom:0 }} title="Sistema de Información Académica">
             <Drawer.Item
                 label="Información Personal"
                 active={page === 'Info_personal'}
