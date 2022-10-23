@@ -7,7 +7,7 @@ import { faBars } from '@fortawesome/free-solid-svg-icons';
 
 const SidePanel = ({ setPage, page }) => {
     return (
-        <Drawer.Section style={{ position: 'absolute', backgroundColor: '#FFF', padding: 30, paddingBottom:"100%", paddingTop:"10%", elevation: 6, top: "9%" }} title="Sistema de Información Académica">
+        <Drawer.Section style={{ position: 'absolute', backgroundColor: '#FFF', paddingBottom:"20%", paddingTop:"10%", elevation: 6,right:0, left:0, top: 63 }} title="Sistema de Información Académica">
             <Drawer.Item
                 label="Información Personal"
                 active={page === 'Info_personal'}
@@ -36,7 +36,7 @@ const myApp = ({ children }) => {
     return (
         <View style={{ flex: 1}}>
             <View position="relative">
-                <Appbar style={{ backgroundColor: "#1F2D52"}}>
+                <Appbar style={{ backgroundColor: "#1F2D52",  elevation: 6}}>
                     <Appbar.Action icon={() => <Text><FontAwesomeIcon icon={faBars} color={"#FFF"} /></Text>} onPress={() => { setActive(!active) }} />
                     <Text style={{ color: "#FFF" }}>SIA</Text>
                 </Appbar>
