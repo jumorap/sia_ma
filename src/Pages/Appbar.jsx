@@ -7,7 +7,7 @@ import { faBars } from '@fortawesome/free-solid-svg-icons';
 
 const SidePanel = ({ setPage, page }) => {
     return (
-        <Drawer.Section style={{ position: 'absolute', backgroundColor: '#FFF', paddingBottom: "20%", paddingTop: "10%", elevation: 6, right: "20%", left: 0, top: 63, bottom: 0 }} title="Sistema de Información Académica">
+        <Drawer.Section style={{ position: 'absolute', backgroundColor: '#FFF', paddingBottom: "20%", paddingTop: "10%", elevation: 6, right: "20%", left: 0, top: 63, bottom: 0 }} >
             <Drawer.Item
                 label="Información Personal"
                 active={page === 'Info_personal'}
