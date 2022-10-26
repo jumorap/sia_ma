@@ -42,7 +42,7 @@ const SidePanel = ({ setPage, page, active, setActive }) => {
                         marginLeft: "auto",
                         marginRight: "auto",
                     }} source={require('../Assets/Images/logo.png')} />
-                    <Text style={{ padding: 20 }}>
+                    <Text style={{ padding: 20, color: "#000" }}>
                         Contacto página web
                         Cra. 1 No. 18-10, Edificio 2, Piso 2, Oficina 201
                         Bogotá, Colombia
@@ -61,7 +61,7 @@ const SidePanel = ({ setPage, page, active, setActive }) => {
 const myApp = ({ children }) => {
     const [active, setActive] = React.useState(false);
     const [page, setPage] = React.useState('');
-    const names = { Info_personal: 1 };
+    const names = { Info_personal: 1, Info_academica: 2, Horario: 3 };
 
     const onsreent = () => {
         setActive(false);

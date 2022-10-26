@@ -11,14 +11,12 @@ const styles = StyleSheet.create({
         fontSize: 20,
         color: '#1F2D52',
         padding: 20,
-        paddingBottom: 20
+        paddingBottom: 10
     },
     container: {
-        padding: 10,
         backgroundColor: '#fff',
         padding: 20,
-        borderRadius: 10
-        
+        borderRadius: 10,
     },
     generalButton: {
         margin: 10,

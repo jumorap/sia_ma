@@ -62,7 +62,7 @@ const cardGenerator = (title, data) => {
  * Page to show the personal information of the user
  * @returns {JSX.Element}
  */
-const InfoPersonal = () => {
+const Horario = () => {
     const [data, setData] = useState(null)
 
     useEffect(() => {
@@ -126,4 +126,4 @@ const InfoPersonal = () => {
     )
 }
 
-export default InfoPersonal;
+export default Horario;
