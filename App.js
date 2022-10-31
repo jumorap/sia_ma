@@ -8,9 +8,9 @@ import Login from "./src/Pages/Session";
 export default function App() {
   return (
     <MyApp>
+        <InfoAcademica />
         <Login />
         <InfoPersonal />
-        <InfoAcademica />
     </MyApp>
   )
 }
