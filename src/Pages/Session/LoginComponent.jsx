@@ -12,9 +12,11 @@ export default function LoginScreen({ navigation }) {
     const [modalVisible, setModalVisible] = useState(false);
     const [passwordVisible, setPasswordVisible] = useState(true);
 
+
     const onLoginPressed = () => {
         setModalVisible(true);
     }
+
     const onPasswordVisiblePressed = () =>{
         setPasswordVisible(!passwordVisible);
     }
@@ -28,7 +30,7 @@ export default function LoginScreen({ navigation }) {
             <View style={styles.textField}>
                 <TextInput
                     style={styles.input}
-                    label="nombre de usuario"
+                    label="Nombre de usuario"
                     placeholder="Nombre de usuario"
                     returnKeyType="next"
                     value={nombre_usuario.value}

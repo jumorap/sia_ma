@@ -1,9 +1,9 @@
 const styles = {
-    View: {
+    view: {
         display: "flex",
         flexDirection: "column",
         borderRadius: "10",
-        background: "var(--reallySoftGray)",
+        background: "#f4f4f4",
         boxShadow: 2,
         width: "100%",
     },
@@ -14,14 +14,12 @@ const styles = {
         display: "flex",
         flexDirection: "row",
         height: "auto",
-        marginBottom: 5,
-        marginTop: 5,
-        marginLeft: 5,
-        marginRight: 5,
+        margin: 10,
+        marginBottom: 2,
         padding: 4,
         // alignItems: "center"
 
-        backgroundColor: "rgb(0, 255, 255)",
+        backgroundColor: "#f4f4f4",
         transition: "boxShadow 300ms cubicBezier(0.4, 0, 0.2, 1) 0ms",
         borderRadius: 4,
         boxSizing: "border-box",
@@ -61,18 +59,17 @@ const styles = {
         width: 100,
         // flexWrap: "wrap",
         justifyContent: "space-around",
-
-
         paddingTop: "5",
         paddingBottom: "5",
     },
 
     infoBasica_right_card: {
         display: "flex",
-        flexDirection: "column",
-        width: 30,
+        flexDirection: "row",
         justifyContent: "center",
         alignItems: "center",
+        backgroundColor: "#aaa",
+        margin: 5,
     }
 }
 

@@ -81,7 +81,7 @@ const getData = () => {
 };
 
 
-const cards = (asignatura) => {
+const Cards = (asignatura) => {
     return (
         <View style={styles.card}>
             <View >
@@ -105,33 +105,30 @@ const InfoAcademica = () => {
 
     return (
         <ScrollView>
-            <Text style={[styles.allText, {fontWeight: "bold"}]}>Historia Academica</Text>
+            <Text style={[styles.allText, {fontWeight: "bold", textAlign: "center", paddingTop: 10}]}>Historia Academica</Text>
 
-            <View>
+            <View style={{margin: 10, padding: 10, backgroundColor: "#f4f4f4", borderRadius: 10}}>
                 <View styles={[styles.infoBasica]}>
                     <View styles={[styles.infoBasica_left]}>
-                        <Text styles={styles.allText}>{"Programa: " + globalPrograma}</Text>
-                        <Text styles={styles.allText}>{"Facultad: " + globalFacultad}</Text>
+                        <Text styles={styles.allText}>{"Programa:\t\t" + globalPrograma}</Text>
+                        <Text styles={styles.allText}>{"Facultad:\t\t\t" + globalFacultad}</Text>
                     </View>
 
                     <View>
                         <View styles={[styles.infoBasica_right]}>
-                            <View styles={[styles.infoBasica_right_card]}>
+                            <View styles={styles.infoBasica_right_card}>
+                                <Text styles={[styles.allText, {fontWeight: "bold"}]}>{"PA:"}</Text>
                                 <Text styles={[styles.allText, {fontWeight: "bold"}]}>{historiaAcademica.pa}</Text>
-                                <Text styles={styles.allText}>{" PA "}</Text>
                             </View>
 
-
                             <View styles={[styles.infoBasica_right_card]}>
+                                <Text styles={[styles.allText, {fontWeight: "bold"}]}>{"PAPA:"}</Text>
                                 <Text styles={[styles.allText, {fontWeight: "bold"}]}>{historiaAcademica.papa}</Text>
-                                <Text styles={styles.allText}>{"PAPA"}</Text>
                             </View>
 
-
-
                             <View styles={[styles.infoBasica_right_card]}>
+                                <Text styles={[styles.allText, {fontWeight: "bold"}]}>{"PAPPI:"}</Text>
                                 <Text styles={[styles.allText, {fontWeight: "bold"}]}>{historiaAcademica.pappi}</Text>
-                                <Text styles={styles.allText}>{"PAPPI"}</Text>
                             </View>
                         </View>
                     </View>
@@ -139,24 +136,26 @@ const InfoAcademica = () => {
             </View>
 
 
-            <Text styles={[styles.allText, {fontWeight: "bold"}]}>Asignaturas</Text>
+            <Text styles={[styles.allText, {paddingLeft: 20, fontSize: 20, fontWeight: 400}]}>&nbsp;&nbsp;&nbsp;Asignatura</Text>
 
-            <View styles={[styles.View]}>
+            <View styles={styles.view}>
                 {historiaAcademica.asignaturas.map((asignatura) => {
                     return (
                         <View>
                             <View>
                                 <View>
-                                    {cards(asignatura)}
+                                    {Cards(asignatura)}
                                 </View>
                             </View>
                         </View>
                     );
                 })}
             </View>
+
+            <Text styles={styles.allText}></Text>
+
         </ScrollView>
     )
 }
 
 export default InfoAcademica;
-

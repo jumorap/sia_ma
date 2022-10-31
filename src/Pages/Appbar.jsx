@@ -30,11 +30,6 @@ const SidePanel = ({ setPage, page, active, setActive }) => {
                         active={page === 'Info_academica'}
                         onPress={() => changePage('Info_academica')}
                     />
-                    <Drawer.Item
-                        label="Horario"
-                        active={page === 'Horario'}
-                        onPress={() => changePage('Horario')}
-                    />
                 </Drawer.Section>
                 <View>
                     <Image style={{
