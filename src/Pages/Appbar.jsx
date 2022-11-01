@@ -30,6 +30,11 @@ const SidePanel = ({ setPage, page, active, setActive }) => {
                         active={page === 'Info_academica'}
                         onPress={() => changePage('Info_academica')}
                     />
+                    <Drawer.Item
+                        label="Horario"
+                        active={page === 'Horario'}
+                        onPress={() => changePage('Horario')}
+                    />
                 </Drawer.Section>
                 <View>
                     <Image style={{
@@ -62,6 +67,15 @@ const myApp = ({ children }) => {
         setActive(false);
     }
 
+    /**
+     * Capitalize and remove special characters from a string
+     * @param title string to be capitalized and clean
+     * @returns {*} capitalized string without special characters
+     */
+    const cleanTitlePage = (title) => {
+        return title.replace(/_/g, " ").replace(/\w\S*/g, (w) => (w.replace(/^\w/, (c) => c.toUpperCase())))
+    }
+
     return (
         <View style={{ flex: 1 }}>
             <ImageBackground source={require('../Assets/Images/bg.jpg')} resizeMode="cover" style={{
@@ -69,7 +83,6 @@ const myApp = ({ children }) => {
                 width: '100%'
             }}>
                 <View position="relative">
-
                     <Appbar style={{ backgroundColor: "#1F2D52", elevation: 6 }}>
                         <Appbar.Action icon={() =>
                             <Text>
@@ -78,12 +91,10 @@ const myApp = ({ children }) => {
                         } onPress={() => { setActive(!active) }} />
 
                         <Text style={{ color: "#FFF" }}>
-                            {page}
+                            {cleanTitlePage(page)}
                         </Text>
                     </Appbar>
-
                 </View>
-
 
                 <View style={{ flex: 1, justifyContent: "center" }}>
                     <View style={{ backgroundColor: "#FFF", borderRadius: 10, margin: 10 }}>

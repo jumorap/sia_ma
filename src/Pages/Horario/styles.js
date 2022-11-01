@@ -18,7 +18,11 @@ const styles = {
         paddingLeft: 32,
     },
     container: {
+        padding: 10,
         paddingBottom: 30,
+    },
+    text: {
+        color: "#000",
     }
 }
 
