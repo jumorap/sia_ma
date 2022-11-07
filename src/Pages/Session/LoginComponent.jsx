@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Text, Pressable, View, Modal, TouchableOpacity, Image  } from 'react-native'
+import { Text, Pressable, View, Modal, TouchableOpacity, Image } from 'react-native'
 import { TextInput } from 'react-native-paper';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { faUserAlt, faLockOpen, faLock } from '@fortawesome/free-solid-svg-icons';
@@ -7,7 +7,7 @@ import styles from './styles.js';
 import { auth } from '../../Middleware/Session/get-api.js';
 
 
-export default function LoginScreen({ navigation }) {
+export default function LoginScreen({setUser}) {
     const [nombre_usuario, setnombre_usuario] = useState({ value: '', error: '' })
     const [password, setPassword] = useState({ value: '', error: '' })
     const [modalVisible, setModalVisible] = useState(false);
@@ -15,19 +15,19 @@ export default function LoginScreen({ navigation }) {
 
 
     const onLoginPressed = async () => {
-        const user = { nombre_usuario: nombre_usuario.value, contrasena: password.value };
-        let token = await auth(user);
-
+        const check_user = { nombre_usuario: nombre_usuario.value, contrasena: password.value };
+        let token = await auth(check_user);
         if (token?.getToken?.auth_token && token?.getToken?.rol) {
+            setUser({ nombre_usuario: nombre_usuario.value, auth_token: token?.getToken?.auth_token })
             alert(token.getToken.auth_token);
         } else {
-            
+           setUser({ nombre_usuario: '', auth_token: '' })
             setModalVisible(true);
         }
-        
+
     }
 
-    const onPasswordVisiblePressed = () =>{
+    const onPasswordVisiblePressed = () => {
         setPasswordVisible(!passwordVisible);
     }
 
@@ -63,8 +63,8 @@ export default function LoginScreen({ navigation }) {
                     onChangeText={(text) => setPassword({ value: text, error: '' })}
                     error={modalVisible}
                     mode="outlined"
-                    secureTextEntry = {passwordVisible} 
-                    right={<TextInput.Icon onPress={() => {onPasswordVisiblePressed(); return false;}} icon={() => <FontAwesomeIcon style={styles.icon} icon={passwordVisible ? faLockOpen:faLock} />} />}
+                    secureTextEntry={passwordVisible}
+                    right={<TextInput.Icon onPress={() => { onPasswordVisiblePressed(); return false; }} icon={() => <FontAwesomeIcon style={styles.icon} icon={passwordVisible ? faLockOpen : faLock} />} />}
                 />
             </View>
             <TouchableOpacity style={styles.generalButton} onPress={onLoginPressed}>

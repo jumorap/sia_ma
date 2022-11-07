@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { Text, View, ImageBackground, Image, TouchableOpacity } from 'react-native';
-import { Appbar, Drawer } from 'react-native-paper';
+import { Appbar, Button, Drawer } from 'react-native-paper';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 
 
-const SidePanel = ({ setPage, page, active, setActive }) => {
+const SidePanel = ({ user, setUser, setPage, page, active, setActive }) => {
 
     const ontouchoutside = () => {
         setActive(false);
@@ -16,7 +16,12 @@ const SidePanel = ({ setPage, page, active, setActive }) => {
         setActive(false);
     }
 
+    const closeSession = () =>{
+        setUser({nombre_usuario: '', auth_token: ''});
+    }
+
     return (
+        user.nombre_usuario != ''?
         <TouchableOpacity onPressIn={ontouchoutside} style={{ position: 'absolute', backgroundColor: '#FFF', paddingBottom: "10%", paddingTop: "10%", elevation: 6, right: "20%", left: 0, top: 63, bottom: 0 }}>
             <View style={{ flex: 1, flexDirection: "column", justifyContent: 'space-between' }}>
                 <Drawer.Section>
@@ -35,6 +40,7 @@ const SidePanel = ({ setPage, page, active, setActive }) => {
                         active={page === 'Horario'}
                         onPress={() => changePage('Horario')}
                     />
+                    <Button onPress={() => closeSession()}>Cerrar sesión</Button>
                 </Drawer.Section>
                 <View>
                     <Image style={{
@@ -53,7 +59,7 @@ const SidePanel = ({ setPage, page, active, setActive }) => {
                     </Text>
                 </View>
             </View >
-        </TouchableOpacity>
+        </TouchableOpacity>:<></>
     );
 }
 
@@ -61,6 +67,7 @@ const SidePanel = ({ setPage, page, active, setActive }) => {
 const myApp = ({ children }) => {
     const [active, setActive] = React.useState(false);
     const [page, setPage] = React.useState('');
+    const [user, setUser] = React.useState({nombre_usuario: '', auth_token: ''})
     const names = { Info_personal: 1, Info_academica: 2, Horario: 3 };
 
     const onsreent = () => {
@@ -98,10 +105,10 @@ const myApp = ({ children }) => {
 
                 <View style={{ flex: 1, justifyContent: "center" }}>
                     <View style={{ backgroundColor: "#FFF", borderRadius: 10, margin: 10 }}>
-                        {children[names[page] || 0]}
+                        {user.nombre_usuario != ''? children[names[page]] : React.cloneElement(children[0], { setUser: setUser})}
                     </View>
                 </View>
-                {active ? <SidePanel setPage={setPage} setActive={setActive} active={active} page={page} /> : <></>}
+                {active ? <SidePanel user={user} setUser={setUser} setPage={setPage} setActive={setActive} active={active} page={page} /> : <></>}
             </ImageBackground>
         </View>
     );
