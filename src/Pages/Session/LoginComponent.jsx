@@ -4,6 +4,7 @@ import { TextInput } from 'react-native-paper';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { faUserAlt, faLockOpen, faLock } from '@fortawesome/free-solid-svg-icons';
 import styles from './styles.js';
+import { auth } from '../../Middleware/Session/get-api.js';
 
 
 export default function LoginScreen({ navigation }) {
@@ -13,8 +14,17 @@ export default function LoginScreen({ navigation }) {
     const [passwordVisible, setPasswordVisible] = useState(true);
 
 
-    const onLoginPressed = () => {
-        setModalVisible(true);
+    const onLoginPressed = async () => {
+        const user = { nombre_usuario: nombre_usuario.value, contrasena: password.value };
+        let token = await auth(user);
+
+        if (token?.getToken?.auth_token && token?.getToken?.rol) {
+            alert(token.getToken.auth_token);
+        } else {
+            
+            setModalVisible(true);
+        }
+        
     }
 
     const onPasswordVisiblePressed = () =>{
