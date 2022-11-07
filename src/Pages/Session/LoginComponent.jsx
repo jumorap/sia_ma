@@ -18,8 +18,7 @@ export default function LoginScreen({setUser}) {
         const check_user = { nombre_usuario: nombre_usuario.value, contrasena: password.value };
         let token = await auth(check_user);
         if (token?.getToken?.auth_token && token?.getToken?.rol) {
-            setUser({ nombre_usuario: nombre_usuario.value, auth_token: token?.getToken?.auth_token })
-            alert(token.getToken.auth_token);
+            setUser({ nombre_usuario: nombre_usuario.value, auth_token: token?.getToken?.auth_token });
         } else {
            setUser({ nombre_usuario: '', auth_token: '' })
             setModalVisible(true);
