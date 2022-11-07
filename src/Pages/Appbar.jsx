@@ -17,6 +17,7 @@ const SidePanel = ({ user, setUser, setPage, page, active, setActive }) => {
     }
 
     const closeSession = () =>{
+        setPage('');
         setUser({nombre_usuario: '', auth_token: ''});
     }
 
