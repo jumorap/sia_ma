@@ -1,5 +1,6 @@
 import React from "react";
 import {ScrollView, Text, View} from "react-native";
+import React, { useState, useEffect } from "react";
 
 import { getHistoriaAcademica } from "../../Middleware";
 import styles from "./styles";
