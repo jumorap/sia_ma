@@ -1,6 +1,7 @@
 import React from "react";
 import {ScrollView, Text, View} from "react-native";
-//import { getUser } from "../../Middleware";
+
+import { getHistoriaAcademica } from "../../Middleware";
 import styles from "./styles";
 
 
@@ -11,72 +12,72 @@ const getData = () => {
 
     const calificaciones01 = [
         {
-            nombre: "Parcial 1",
-            nota: "2.5",
-            porcentaje: "100"
+            _nombre: "Parcial 1",
+            _nota: "2.5",
+            _porcentaje: "100"
         }
     ]
 
 
     const calificaciones02 = [
         {
-            nombre: "Parcial 1",
-            nota: "4.2",
-            porcentaje: "30"
+            _nombre: "Parcial 1",
+            _nota: "4.2",
+            _porcentaje: "30"
         },
         {
-            nombre: "Parcial 2",
-            nota: "5.0",
-            porcentaje: "80"
+            _nombre: "Parcial 2",
+            _nota: "5.0",
+            _porcentaje: "80"
         }
     ]
 
     const asignaturas = [
         {
-            codigo: "01",
-            nombre: "Calculo Diferencial",
-            creditos: "4",
-            tipo: "Fundamentación Obligatoria",
-            periodo: "2022-2",
-            esConsolidada: "true",
-            calificaciones: calificaciones01,
-            definitiva: "4.5",
-            esAprobada: true
+            _codigo: "01",
+            _nombre: "Calculo Diferencial",
+            _creditos: "4",
+            _tipo: "Fundamentación Obligatoria",
+            _periodo: "2022-2",
+            _esConsolidada: "true",
+            _calificaciones: calificaciones01,
+            _definitiva: "4.5",
+            _esAprobada: true
         },
         {
-            codigo: "02",
-            nombre: "Ingeniería Económica",
-            creditos: "3",
-            tipo: "Fundamentación Optativa",
-            periodo: "2022-1",
-            esConsolidada: "true",
-            calificaciones: calificaciones02,
-            definitiva: "4.8",
-            esAprobada: true
+            _codigo: "02",
+            _nombre: "Ingeniería Económica",
+            _creditos: "3",
+            _tipo: "Fundamentación Optativa",
+            _periodo: "2022-1",
+            _esConsolidada: "true",
+            _calificaciones: calificaciones02,
+            _definitiva: "4.8",
+            _esAprobada: true
         },
         {
-            codigo: "03",
-            nombre: "Matematicas Discretas",
-            creditos: "3",
-            tipo: "Fundamentación Obligatoria",
-            periodo: "2021-2",
-            esConsolidada: "true",
-            calificaciones: calificaciones02,
-            definitiva: "2.7",
-            esAprobada: false
+            _codigo: "03",
+            _nombre: "Matematicas Discretas",
+            _creditos: "3",
+            _tipo: "Fundamentación Obligatoria",
+            _periodo: "2021-2",
+            _esConsolidada: "true",
+            _calificaciones: calificaciones02,
+            _definitiva: "2.7",
+            _esAprobada: false
         }
     ]
 
     return {
-        documento_identidad: "4792004165",
-        id_historia: "01",
-        id_programa: "05",
-        porcentaje_avance: "75",
-        papa: "4.1",
-        pa: "4.5",
-        semestreActual: "2022-2",
-        pappi: "3.5",
-        asignaturas: asignaturas
+        _documento_identidad: "4792004165",
+        _id_historia: "01",
+        _id_programa: "05",
+        _porcentaje_avance: "75",
+        _papa: "4.1",
+        _pa: "4.5",
+        _semestreActual: "2022-2",
+        _pappi: "3.5",
+        _asignaturas: asignaturas
     };
 };
 
@@ -85,15 +86,15 @@ const Cards = (asignatura) => {
     return (
         <View style={styles.card}>
             <View style={[styles.cardLeft]}>
-                <Text style={[styles.allText, {fontWeight: "bold"}]}>{asignatura.nombre + "  (" + asignatura.codigo + ")  "}</Text>
-                <Text style={styles.allText}>{"Creditos: " + asignatura.creditos}</Text>
-                <Text style={styles.allText}>{"Tipo: " + asignatura.tipo}</Text>
-                <Text style={styles.allText}>{"Periodo cursado: " + asignatura.periodo}</Text>
+                <Text style={[styles.allText, {fontWeight: "bold"}]}>{asignatura._nombre + "  (" + asignatura._codigo + ")  "}</Text>
+                <Text style={styles.allText}>{"Creditos: " + asignatura._creditos}</Text>
+                <Text style={styles.allText}>{"Tipo: " + asignatura._tipo}</Text>
+                <Text style={styles.allText}>{"Periodo cursado: " + asignatura._periodo}</Text>
             </View>
 
             <View style={[styles.cardRight]}>
-                <Text style={[styles.allText, {fontWeight: "bold"}]}>{asignatura.definitiva}</Text>
-                <Text style={styles.allText}>{asignatura.esAprobada ? "Aprobada" : "Reprobada"}</Text>
+                <Text style={[styles.allText, {fontWeight: "bold"}]}>{asignatura._definitiva}</Text>
+                <Text style={styles.allText}>{asignatura._esAprobada ? "Aprobada" : "Reprobada"}</Text>
             </View>
         </View>
     );
@@ -101,7 +102,31 @@ const Cards = (asignatura) => {
 
 
 const InfoAcademica = () => {
-    let historiaAcademica = getData();
+    
+
+  
+    const [data, setData] = useState(null)
+    useEffect(() => {
+      // Make a single request to the API
+      if (!data) getHistoriaAcademica().then((response) => setData(response))
+    }, [data])
+    
+    
+      console.log("data: " + data)
+    
+      //console.log(data.history)
+    
+     
+      let historiaAcademica;
+      
+    
+      if(data){
+        historiaAcademica = data
+      }else{
+        historiaAcademica = getData()
+      }
+
+
 
     return (
         <ScrollView>
@@ -115,15 +140,15 @@ const InfoAcademica = () => {
 
                 <View style={[styles.infoBasicaRight]}>
                     <View style={styles.infoBasicaRightCard}>
-                        <Text style={[styles.allText, styles.promedios]}>{historiaAcademica.pa}{"\nPA"}</Text>
+                        <Text style={[styles.allText, styles.promedios]}>{historiaAcademica._pa}{"\nPA"}</Text>
                     </View>
 
                     <View style={[styles.infoBasicaRightCard]}>
-                        <Text style={[styles.allText, styles.promedios]}>{historiaAcademica.papa}{"\nPAPA"}</Text>
+                        <Text style={[styles.allText, styles.promedios]}>{historiaAcademica._papa}{"\nPAPA"}</Text>
                     </View>
 
                     <View style={[styles.infoBasicaRightCard]}>
-                        <Text style={[styles.allText, styles.promedios]}>{historiaAcademica.pappi}{"\nPAPPI"}</Text>
+                        <Text style={[styles.allText, styles.promedios]}>{historiaAcademica._pappi}{"\nPAPPI"}</Text>
                     </View>
                 </View>
             </View>
@@ -132,7 +157,7 @@ const InfoAcademica = () => {
             <Text style={[styles.allText, {paddingLeft: 20, fontWeight: "bold"}]}>Asignaturas:</Text>
 
             <View style={styles.view}>
-                {historiaAcademica.asignaturas.map((asignatura) => {
+                {historiaAcademica._asignaturas.map((asignatura) => {
                     return (
                         <View>
                             {Cards(asignatura)}
