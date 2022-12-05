@@ -1,4 +1,4 @@
-import InfoAcademica from "./InfoAcademica";
+import InfoAcademica from './InfoAcademica';
 
 
 export default InfoAcademica;
