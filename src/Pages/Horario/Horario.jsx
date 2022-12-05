@@ -28,17 +28,26 @@ const [asignaturas, setAsignaturas] = useState([])
 
 useEffect(() => {
   
-    console.log(data?._asignaturasInscritas)
+   
      
       data?._asignaturasInscritas.forEach(asignatura => {
-        console.log(data)
+        
   
       getCursosByCodigoAsignatura(asignatura._id_asignature).then((response) => {
       
       let cursosdeAsignatura_i = response.cursosByCodigoAsignatura
   
+      console.log("Cursos i")
+      console.log({cursosdeAsignatura_i})
+
+
       cursosdeAsignatura_i.map(cursito => {
           //buscar id curso
+          console.log("Cursito")
+          console.log({cursito})
+
+          console.log("asignatura._codigo")
+          console.log(asignatura._codigo)
           
           if(cursito.id_curso == asignatura._codigo){
             
