@@ -25,22 +25,12 @@ useEffect(() => {
 //fetch cursos
 const [cursos, setCursos] = useState([])
 const [asignaturas, setAsignaturas] = useState([])
-const [vistaCursos,setVistaCursos] = useState([])
 
 useEffect(() => {
   
     if(data != null || data != undefined){
      
       data?._asignaturasInscritas.forEach(asignatura => {
-  
-  
-      //obtener _id_asignature: Int por cada asignatura y extraer cursos == a asignatura._codigo
-  
-      // getCursosByCodigoAsignatura  asignatura._codigo
-      
-    
-      // console.log(asignatura._id_asignature)
-      // console.log(asignatura._codigo)
   
       getCursosByCodigoAsignatura(asignatura._id_asignature).then((response) => {
       
@@ -61,11 +51,6 @@ useEffect(() => {
       });
       
 
-      setVistaCursos(horarioHandlerFetch(cursos,asignaturas))
-      console.log("vistacursos: ")
-      console.log(vistaCursos)
-
-
       })
       
     }
@@ -80,8 +65,6 @@ useEffect(() => {
   
 }
   }, [cursos,data,asignaturas])
-
-
 
 
 console.log("cursos: ")
