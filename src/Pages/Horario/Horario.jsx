@@ -6,37 +6,87 @@ import styles from "./styles";
 
 
 const Horario = () => {
-    //fetch historia academica
-    const [data, setData] = useState(null)
-    const [cursos, setCursos] = useState([])
-    const [asignaturas, setAsignaturas] = useState([])
+   
+//fetch historia academica
+const [data, setData] = useState(null)
+useEffect(() => {
 
-    useEffect(() => {
-      getHistoriaAcademica("juan").then((response) => {
-        console.log({response})
-        setData(response)
+  if(data == null || data == undefined){
+  getHistoriaAcademica(sessionStorage.USER).then((response) => {
+    
+    setData(response.getHistory[0])
+  })
+}
+
+}, [data])
+
+
+
+//fetch cursos
+const [cursos, setCursos] = useState([])
+const [asignaturas, setAsignaturas] = useState([])
+const [vistaCursos,setVistaCursos] = useState([])
+
+useEffect(() => {
+  
+    if(data != null || data != undefined){
+     
+      data?._asignaturasInscritas.forEach(asignatura => {
+  
+  
+      //obtener _id_asignature: Int por cada asignatura y extraer cursos == a asignatura._codigo
+  
+      // getCursosByCodigoAsignatura  asignatura._codigo
+      
+    
+      // console.log(asignatura._id_asignature)
+      // console.log(asignatura._codigo)
+  
+      getCursosByCodigoAsignatura(asignatura._id_asignature).then((response) => {
+      
+      let cursosdeAsignatura_i = response.cursosByCodigoAsignatura
+  
+      cursosdeAsignatura_i.map(cursito => {
+          //buscar id curso
+          
+          if(cursito.id_curso == asignatura._codigo){
+            
+              cursos.push(cursito)
+              setCursos(cursos)
+              asignaturas.push(asignatura)
+              setAsignaturas(asignaturas)
+            
+            
+          }
+      });
+      
+
+      setVistaCursos(horarioHandlerFetch(cursos,asignaturas))
+      console.log("vistacursos: ")
+      console.log(vistaCursos)
+
+
       })
-    }, [])
+      
+    }
 
-    useEffect(() => {
-      console.log({data})
-      data?._asignaturasInscritas?.forEach(asignatura => {
-          getCursosByCodigoAsignatura(asignatura?._id_asignature).then((response) => {
-              console.log("peticion a asignatura x para obener cursos")
-              console.log({response})
-              response?.forEach(cursito => {
-                //buscar id curso
-                console.log(cursito)
-                if(cursito.id_curso === asignatura._codigo){
-                  cursos.push(cursito)
-                  setCursos(cursos)
-                  asignaturas.push(asignatura)
-                  setAsignaturas(asignaturas)
-                }
-        });
-        })
-    });
-    }, [cursos])
+
+  
+  
+    );
+    
+    
+  
+  
+}
+  }, [cursos,data,asignaturas])
+
+
+
+
+console.log("cursos: ")
+  console.log(cursos)
+ 
 
     return (
         <ScrollView>
