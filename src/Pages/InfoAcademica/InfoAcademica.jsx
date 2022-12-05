@@ -109,15 +109,17 @@ const [data, setData] = useState(null)
 useEffect(() => {
   // Make a single request to the API
   //id historia de juan sessionStorage.USER
-    getHistoriaAcademica("juan").then((response) => { 
-      setData(response)
-      console.log(response)
+  if(data == null || data == undefined){
+      getHistoriaAcademica("juan").then((response) => { 
+      setData(response.getHistory[0])
+      console.log(response.getHistory[0])
       })
   
-  
+    }
 }, [data])
 
   //console.log(data.history)
+  console.log(data?._asignaturas)
 
     return (
         <ScrollView>
