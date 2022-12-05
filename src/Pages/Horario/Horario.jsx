@@ -31,7 +31,8 @@ useEffect(() => {
    
      
       data?._asignaturasInscritas.forEach(asignatura => {
-        
+        console.log("asignatura inscrita")
+        console.log(asignatura)
   
       getCursosByCodigoAsignatura(asignatura._id_asignature).then((response) => {
       
@@ -49,19 +50,15 @@ useEffect(() => {
           console.log("asignatura._codigo")
           console.log(asignatura._codigo)
           
-          if(cursito.id_curso == asignatura._codigo){
+          if(cursito.id_curso == asignatura._codigo.toString()){
             
               cursos.push(cursito)
               setCursos(cursos)
               asignaturas.push(asignatura)
               setAsignaturas(asignaturas)
-            
-            
-          }
-      });
-      
-
-      })
+            }
+        });
+        })
       
     }
 
@@ -73,14 +70,16 @@ useEffect(() => {
     
   
   
+    console.log("cursos: ")
+    console.log(cursos)
+    console.log("asignaturas: ")
+    console.log(asignaturas)
 
   }, [cursos,data,asignaturas])
 
 
-    console.log("cursos: ")
-    console.log(cursos)
  
-
+console.log(cursos[0].grupo)
     return (
         <ScrollView>
             
