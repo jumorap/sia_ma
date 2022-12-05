@@ -104,30 +104,20 @@ const Cards = (asignatura) => {
 
 const InfoAcademica = () => {
     
-
+    
+const [data, setData] = useState(null)
+useEffect(() => {
+  // Make a single request to the API
+  //id historia de juan sessionStorage.USER
+    getHistoriaAcademica("juan").then((response) => { 
+      setData(response)
+      console.log(response)
+      })
   
-    const [data, setData] = useState(null)
-    useEffect(() => {
-      // Make a single request to the API
-      if (!data) getHistoriaAcademica().then((response) => setData(response))
-    }, [data])
-    
-    
-      console.log("data: " + data)
-    
-      //console.log(data.history)
-    
-     
-      let historiaAcademica;
-      
-    
-      if(data){
-        historiaAcademica = data
-      }else{
-        historiaAcademica = getData()
-      }
+  
+}, [data])
 
-
+  //console.log(data.history)
 
     return (
         <ScrollView>
@@ -141,15 +131,15 @@ const InfoAcademica = () => {
 
                 <View style={[styles.infoBasicaRight]}>
                     <View style={styles.infoBasicaRightCard}>
-                        <Text style={[styles.allText, styles.promedios]}>{historiaAcademica._pa}{"\nPA"}</Text>
+                        <Text style={[styles.allText, styles.promedios]}>{data?._pa}{"\nPA"}</Text>
                     </View>
 
                     <View style={[styles.infoBasicaRightCard]}>
-                        <Text style={[styles.allText, styles.promedios]}>{historiaAcademica._papa}{"\nPAPA"}</Text>
+                        <Text style={[styles.allText, styles.promedios]}>{data?._papa}{"\nPAPA"}</Text>
                     </View>
 
                     <View style={[styles.infoBasicaRightCard]}>
-                        <Text style={[styles.allText, styles.promedios]}>{historiaAcademica._pappi}{"\nPAPPI"}</Text>
+                        <Text style={[styles.allText, styles.promedios]}>{data?._pappi}{"\nPAPPI"}</Text>
                     </View>
                 </View>
             </View>
@@ -158,7 +148,7 @@ const InfoAcademica = () => {
             <Text style={[styles.allText, {paddingLeft: 20, fontWeight: "bold"}]}>Asignaturas:</Text>
 
             <View style={styles.view}>
-                {historiaAcademica._asignaturas.map((asignatura) => {
+                {data?._asignaturas.map((asignatura) => {
                     return (
                         <View>
                             {Cards(asignatura)}
