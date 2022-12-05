@@ -1,5 +1,5 @@
 // IPv4 address -> Get with ipconfig
-const principalRoute = 'http://192.168.1.173:4010'
+const principalRoute = 'http://35.192.56.86:4000'
 
 const apiUrl = {
     Session: {
