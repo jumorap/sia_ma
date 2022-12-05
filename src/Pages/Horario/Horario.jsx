@@ -28,9 +28,10 @@ const [asignaturas, setAsignaturas] = useState([])
 
 useEffect(() => {
   
-    if(data != null || data != undefined){
+    console.log(data?._asignaturasInscritas)
      
       data?._asignaturasInscritas.forEach(asignatura => {
+        console.log(data)
   
       getCursosByCodigoAsignatura(asignatura._id_asignature).then((response) => {
       
@@ -63,12 +64,12 @@ useEffect(() => {
     
   
   
-}
+
   }, [cursos,data,asignaturas])
 
 
-console.log("cursos: ")
-  console.log(cursos)
+    console.log("cursos: ")
+    console.log(cursos)
  
 
     return (
