@@ -69,7 +69,7 @@ const myApp = ({ children }) => {
     const [active, setActive] = React.useState(false);
     const [page, setPage] = React.useState('');
     const [user, setUser] = React.useState({nombre_usuario: '', auth_token: ''})
-    const names = { Info_personal: 1, Info_academica: 2, Horario: 3 };
+    const names = { Info_personal: 1, Info_academica: 2, Horario: 3, Home:4 };
 
     const onsreent = () => {
         setActive(false);
@@ -106,7 +106,7 @@ const myApp = ({ children }) => {
 
                 <View style={{ flex: 1, justifyContent: "center" }}>
                     <View style={{ backgroundColor: "#FFF", borderRadius: 10, margin: 10 }}>
-                        {user.nombre_usuario != ''? children[names[page]] : React.cloneElement(children[0], { setUser: setUser})}
+                        {user.nombre_usuario != ''? children[names[page != ''? page : "Home"]] : React.cloneElement(children[0], { setUser: setUser})}
                     </View>
                 </View>
                 {active ? <SidePanel user={user} setUser={setUser} setPage={setPage} setActive={setActive} active={active} page={page} /> : <></>}

@@ -4,7 +4,7 @@ import InfoPersonal from "./src/Pages/InfoPersonal";
 import InfoAcademica from "./src/Pages/InfoAcademica";
 import Login from "./src/Pages/Session";
 import Horario from "./src/Pages/Horario";
-
+import Home from './src/Pages/Home';
 
 export default function App() {
   return (
@@ -13,6 +13,7 @@ export default function App() {
         <InfoPersonal />
         <InfoAcademica />
         <Horario />
+        <Home />
     </MyApp>
   )
 }
