@@ -106,7 +106,7 @@ const myApp = ({ children }) => {
 
                 <View style={{ flex: 1, justifyContent: "center" }}>
                     <View style={{ backgroundColor: "#FFF", borderRadius: 10, margin: 10 }}>
-                        {user.nombre_usuario != ''? children[names[page != ''? page : "Home"]] : React.cloneElement(children[0], { setUser: setUser})}
+                        {user.nombre_usuario ? children[names[page ? page : "Home"]] : React.cloneElement(children[0], { setUser: setUser})}
                     </View>
                 </View>
                 {active ? <SidePanel user={user} setUser={setUser} setPage={setPage} setActive={setActive} active={active} page={page} /> : <></>}
